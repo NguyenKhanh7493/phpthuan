@@ -1,10 +1,51 @@
-<?php include ('config/define.php');?>
 <?php
-    // biểu thức chính quy
-    $pattern = '/^[A-Za-z0-9_\.]{6,32}$/'; //sử dụng hàm preg_match($pattern,$subject) -> kiểm tra username
-    $pattern_pass = '/^([A-Z]){1}([\w_\.!@#$%^&*()]+){5,31}$/'; //sử dụng hàm preg_match($pattern,$subject) -> kiểm tra pass
-    $pattern_email = '^[A-Za-z0-9_.]{6,32}@([a-zA-Z0-9]{2,12})(.[a-zA-Z]{2,12})+$'; //sử dụng hàm preg_match($pattern,$subject) -> kiểm tra email
+    session_start();
+    include ('config/define.php');
+    include ('config/database.php');
+
+    if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+        $error = array();
+        if (empty($_POST['email'])){
+            $error['email'] = "(*) Bạn chưa nhập email";
+        }else{
+            $pattern = '/^[A-Za-z0-9_.]{6,32}@([a-zA-Z0-9]{2,12})(.[a-zA-Z]{2,12})+$/';
+            if (!preg_match($pattern,$_POST['email'])){
+                $error['email'] = "Bạn nhập không đúng định dạng email";
+            }else{
+                $email = $_POST['email'];
+            }
+        }
+        if (empty($_POST['password'])){
+            $error['password'] = "(*) Bạn chưa nhập mật khẩu";
+        }else{
+            $pattern = '/^[A-Za-z0-9_\.]{6,32}$/';
+            if (!preg_match($pattern,$_POST['password'])){
+                $error['password'] = "Mật khẩu phải hơn 6 ký tự và không chứa ký tự đặc biệt";
+            }else{
+                $password = $_POST['password'];
+            }
+        }
+//        // Xử lý để tránh MySQL injection
+//        $email = stripslashes($email);
+//        $pass = stripslashes($password);
+//        $email = mysqli_real_escape_string($db,$email);
+//        $pass = mysqli_real_escape_string($db,$pass);
+        if (empty($error)){
+            $sql = "SELECT * FROM users WHERE email = {$email} and password = {$password}";
+            $result = mysqli_query($db,$sql);
+            $row = mysqli_num_rows($result);
+            if ($row > 0){
+                $_SESSION['email'] = $row['email'];
+                $_SESSION['fullname'] = $row['fullname'];
+                header('location:/admin/index.php');
+                echo '<p class="btn-success">Đăng nhập thành công</p>';
+            }else{
+                $error['fail'] = "Đăng nhập thất bại";
+            }
+        }
+    }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -70,13 +111,22 @@
                 <div class="card-body p-5">
 
                     <h4 class="text-dark mb-5">ĐĂNG NHẬP</h4>
+                    <?php if (isset($error['fail'])){?>
+                    <p style="color: red;font-size: 15px;"><?php echo $error['fail'] ;?></p>
+                    <?php }?>
                     <form action="" method="post">
                         <div class="row">
                             <div class="form-group col-md-12 mb-4">
-                                <input type="email" class="form-control input-lg" id="email" aria-describedby="emailHelp" placeholder="Nhập email">
+                                <input type="email" class="form-control input-lg" name="email" aria-describedby="emailHelp" placeholder="Nhập email" value="<?php if (isset($_POST['email'])) echo $_POST['email'] ;?>">
+                                <?php if (isset($error['email'])){?>
+                                <span style="color: red"><?php echo $error['email'];?></span>
+                                <?php }?>
                             </div>
                             <div class="form-group col-md-12 ">
-                                <input type="password" class="form-control input-lg" id="password" placeholder="Nhập mật khẩu">
+                                <input type="password" class="form-control input-lg" name="password" placeholder="Nhập mật khẩu">
+                                <?php if (isset($error['password'])){?>
+                                    <span style="color: red"><?php echo $error['password'];?></span>
+                                <?php }?>
                             </div>
                             <div class="col-md-12">
                                 <div class="d-flex my-2 justify-content-between">
@@ -89,7 +139,7 @@
                                     </div>
 <!--                                    <p><a class="text-blue" href="#">Forgot Your Password?</a></p>-->
                                 </div>
-                                <button type="submit" class="btn btn-lg btn-primary btn-block mb-4">Đăng nhập</button>
+                                <button type="submit" class="btn btn-lg btn-primary btn-block mb-4" name="btn_login">Đăng nhập</button>
                                 <p>Bạn chưa có tài khoản ?
                                     <a class="text-blue" href="sign-up.html">Đăng ký</a>
                                 </p>
