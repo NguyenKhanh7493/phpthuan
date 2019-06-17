@@ -1,4 +1,10 @@
 <?php include ('config/define.php');?>
+<?php
+    // biểu thức chính quy
+    $pattern = '/^[A-Za-z0-9_\.]{6,32}$/'; //sử dụng hàm preg_match($pattern,$subject) -> kiểm tra username
+    $pattern_pass = '/^([A-Z]){1}([\w_\.!@#$%^&*()]+){5,31}$/'; //sử dụng hàm preg_match($pattern,$subject) -> kiểm tra pass
+    $pattern_email = '^[A-Za-z0-9_.]{6,32}@([a-zA-Z0-9]{2,12})(.[a-zA-Z]{2,12})+$'; //sử dụng hàm preg_match($pattern,$subject) -> kiểm tra email
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -64,7 +70,7 @@
                 <div class="card-body p-5">
 
                     <h4 class="text-dark mb-5">ĐĂNG NHẬP</h4>
-                    <form action="/index.html">
+                    <form action="" method="post">
                         <div class="row">
                             <div class="form-group col-md-12 mb-4">
                                 <input type="email" class="form-control input-lg" id="email" aria-describedby="emailHelp" placeholder="Nhập email">
