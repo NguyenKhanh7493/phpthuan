@@ -1,58 +1,38 @@
-</div>
-
-
-
 
 </div>
-
-<footer class="footer mt-auto">
-    <div class="copyright bg-white">
-        <p>
-            &copy; <span id="copy-year">2019</span> được phát triển bởi
-            <a
-                class="text-primary"
-                href="https://www.facebook.com/nguyenkhanh.N2K"
-                target="_blank"
-            >Nguyễn Khánh</a
-            >.
-        </p>
-    </div>
-    <script>
-        var d = new Date();
-        var year = d.getFullYear();
-        document.getElementById("copy-year").innerHTML = year;
-    </script>
-</footer>
-
+<!-- /.container-fluid -->
+<footer class="footer text-center"> 2019 &copy; Được thiết kế bới Nguyễn Khánh </footer>
 </div>
+<!-- /#page-wrapper -->
 </div>
-
-
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCn8TFXGg17HAUcNpkwtxxyT9Io9B_NcM" defer></script>
-<script src="assets/plugins/jquery/jquery.min.js"></script>
-<script src="assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="assets/plugins/toaster/toastr.min.js"></script>
-<script src="assets/plugins/slimscrollbar/jquery.slimscroll.min.js"></script>
-<script src="assets/plugins/charts/Chart.min.js"></script>
-<script src="assets/plugins/ladda/spin.min.js"></script>
-<script src="assets/plugins/ladda/ladda.min.js"></script>
-<script src="assets/plugins/jquery-mask-input/jquery.mask.min.js"></script>
-<script src="assets/plugins/select2/js/select2.min.js"></script>
-<script src="assets/plugins/jvectormap/jquery-jvectormap-2.0.3.min.js"></script>
-<script src="assets/plugins/jvectormap/jquery-jvectormap-world-mill.js"></script>
-<script src="assets/plugins/daterangepicker/moment.min.js"></script>
-<script src="assets/plugins/daterangepicker/daterangepicker.js"></script>
-<script src="assets/plugins/jekyll-search.min.js"></script>
-<script src="assets/js/sleek.js"></script>
-<script src="assets/js/chart.js"></script>
-<script src="assets/js/date-range.js"></script>
-<script src="assets/js/map.js"></script>
-<script src="assets/js/custom.js"></script>
-
+<!-- /#wrapper -->
+<!-- jQuery -->
+<script src="<?=base_url?>/admin/assets/plugins/bower_components/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="<?=base_url?>/admin/assets/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- Menu Plugin JavaScript -->
+<script src="<?=base_url?>/admin/assets/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js"></script>
+<!--slimscroll JavaScript -->
+<script src="<?=base_url?>/admin/assets/js/jquery.slimscroll.js"></script>
+<!--Morris JavaScript -->
+<script src="<?=base_url?>/admin/assets/plugins/bower_components/raphael/raphael-min.js"></script>
+<script src="<?=base_url?>/admin/assets/plugins/bower_components/morrisjs/morris.js"></script>
+<!-- Sparkline chart JavaScript -->
+<script src="<?=base_url?>/admin/assets/plugins/bower_components/jquery-sparkline/jquery.sparkline.min.js"></script>
+<!-- jQuery peity -->
+<script src="<?=base_url?>/admin/assets/plugins/bower_components/peity/jquery.peity.min.js"></script>
+<script src="<?=base_url?>/admin/assets/plugins/bower_components/peity/jquery.peity.init.js"></script>
+<!--Wave Effects -->
+<script src="<?=base_url?>/admin/assets/js/waves.js"></script>
+<!-- Custom Theme JavaScript -->
+<script src="<?=base_url?>/admin/assets/js/custom.min.js"></script>
+<script src="<?=base_url?>/admin/assets/js/dashboard1.js"></script>
+<!--Style Switcher -->
+<script src="<?=base_url?>/admin/assets/plugins/bower_components/styleswitcher/jQuery.style.switcher.js"></script>
 <script type="text/javascript">
     $('div.my-alert').delay(5000).slideUp();
 </script>
-
-
 </body>
+
+<!-- Mirrored from eliteadmin.themedesigner.in/demos/eliteadmin-crm/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 20 Mar 2017 09:33:00 GMT -->
 </html>

@@ -1,365 +1,219 @@
-<aside class="left-sidebar bg-sidebar">
-    <div id="sidebar" class="sidebar sidebar-with-footer">
-        <!-- Aplication Brand -->
-        <div class="app-brand">
-            <a href="/index.html">
-                <svg
-                    class="brand-icon"
-                    xmlns="http://www.w3.org/2000/svg"
-                    preserveAspectRatio="xMidYMid"
-                    width="30"
-                    height="33"
-                    viewBox="0 0 30 33"
-                >
-                    <g fill="none" fill-rule="evenodd">
-                        <path
-                            class="logo-fill-blue"
-                            fill="#7DBCFF"
-                            d="M0 4v25l8 4V0zM22 4v25l8 4V0z"
-                        />
-                        <path class="logo-fill-white" fill="#FFF" d="M11 4v25l8 4V0z" />
-                    </g>
-                </svg>
-                <span class="brand-name">Sleek Dashboard</span>
-            </a>
-        </div>
-        <!-- begin sidebar scrollbar -->
-        <div class="sidebar-scrollbar">
-
-            <!-- sidebar menu -->
-            <ul class="nav sidebar-inner" id="sidebar-menu">
-
-
-
-                <li  class="has-sub active expand" >
-                    <a class="sidenav-item-link" href="/admin/index.php">
-                        <i class="mdi mdi-view-dashboard-outline"></i>
-                        <span class="nav-text">Trang chủ</span>
-                    </a>
-                </li>
-
-
-
-
-
-                <li  class="has-sub" >
-                    <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#ui-elements"
-                       aria-expanded="false" aria-controls="ui-elements">
-                        <i class="mdi mdi-folder-multiple-outline"></i>
-                        <span class="nav-text">Quản lý admin</span> <b class="caret"></b>
-                    </a>
-                    <ul  class="collapse"  id="ui-elements"
-                         data-parent="#sidebar-menu">
-                        <div class="sub-menu">
-
-
-                            <li  class="has-sub" >
-                                <a class="sidenav-item-link" href="/admin/module/user/add.php">
-                                    <span class="nav-text">Thêm dữ liệu</span>
-                                </a>
-                            </li>
-
-                            <li  class="has-sub" >
-                                <a class="sidenav-item-link" href="/admin/module/user/list.php">
-                                    <span class="nav-text">Danh sách</span>
-                                </a>
-                            </li>
-
-                        </div>
-                    </ul>
-                </li>
-
-
-
-
-
-                <li  class="has-sub" >
-                    <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#charts"
-                       aria-expanded="false" aria-controls="charts">
-                        <i class="mdi mdi-chart-pie"></i>
-                        <span class="nav-text">Charts</span> <b class="caret"></b>
-                    </a>
-                    <ul  class="collapse"  id="charts"
-                         data-parent="#sidebar-menu">
-                        <div class="sub-menu">
-
-
-
-                            <li >
-                                <a class="sidenav-item-link" href="chartjs.html">
-                                    <span class="nav-text">ChartJS</span>
-
-                                </a>
-                            </li>
-
-
-
-
-                        </div>
-                    </ul>
-                </li>
-
-
-
-
-
-                <li  class="has-sub" >
-                    <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#pages"
-                       aria-expanded="false" aria-controls="pages">
-                        <i class="mdi mdi-image-filter-none"></i>
-                        <span class="nav-text">Pages</span> <b class="caret"></b>
-                    </a>
-                    <ul  class="collapse"  id="pages"
-                         data-parent="#sidebar-menu">
-                        <div class="sub-menu">
-
-
-
-                            <li >
-                                <a class="sidenav-item-link" href="user-profile.html">
-                                    <span class="nav-text">User Profile</span>
-
-                                </a>
-                            </li>
-
-
-
-
-
-                            <li  class="has-sub" >
-                                <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#authentication"
-                                   aria-expanded="false" aria-controls="authentication">
-                                    <span class="nav-text">Authentication</span> <b class="caret"></b>
-                                </a>
-                                <ul  class="collapse"  id="authentication">
-                                    <div class="sub-menu">
-
-                                        <li >
-                                            <a href="sign-in.html">Sign In</a>
-                                        </li>
-
-                                        <li >
-                                            <a href="sign-up.html">Sign Up</a>
-                                        </li>
-
-                                    </div>
-                                </ul>
-                            </li>
-
-
-
-
-                            <li  class="has-sub" >
-                                <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#others"
-                                   aria-expanded="false" aria-controls="others">
-                                    <span class="nav-text">Others</span> <b class="caret"></b>
-                                </a>
-                                <ul  class="collapse"  id="others">
-                                    <div class="sub-menu">
-
-                                        <li >
-                                            <a href="invoice.html">invoice</a>
-                                        </li>
-
-                                        <li >
-                                            <a href="error.html">Error</a>
-                                        </li>
-
-                                    </div>
-                                </ul>
-                            </li>
-
-
-
-                        </div>
-                    </ul>
-                </li>
-
-
-
-
-
-                <li  class="has-sub" >
-                    <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#documentation"
-                       aria-expanded="false" aria-controls="documentation">
-                        <i class="mdi mdi-book-open-page-variant"></i>
-                        <span class="nav-text">Documentation</span> <b class="caret"></b>
-                    </a>
-                    <ul  class="collapse"  id="documentation"
-                         data-parent="#sidebar-menu">
-                        <div class="sub-menu">
-
-
-
-                            <li class="section-title">
-                                Getting Started
-                            </li>
-
-
-
-
-
-
-                            <li >
-                                <a class="sidenav-item-link" href="introduction.html">
-                                    <span class="nav-text">Introduction</span>
-
-                                </a>
-                            </li>
-
-
-
-
-
-
-                            <li >
-                                <a class="sidenav-item-link" href="setup.html">
-                                    <span class="nav-text">Setup</span>
-
-                                </a>
-                            </li>
-
-
-
-
-
-
-                            <li >
-                                <a class="sidenav-item-link" href="customization.html">
-                                    <span class="nav-text">Customization</span>
-
-                                </a>
-                            </li>
-
-
-
-
-
-
-                            <li class="section-title">
-                                Layouts
-                            </li>
-
-
-
-
-
-                            <li  class="has-sub" >
-                                <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#headers"
-                                   aria-expanded="false" aria-controls="headers">
-                                    <span class="nav-text">Layout Headers</span> <b class="caret"></b>
-                                </a>
-                                <ul  class="collapse"  id="headers">
-                                    <div class="sub-menu">
-
-                                        <li >
-                                            <a href="header-fixed.html">Header Fixed</a>
-                                        </li>
-
-                                        <li >
-                                            <a href="header-static.html">Header Static</a>
-                                        </li>
-
-                                        <li >
-                                            <a href="header-light.html">Header Light</a>
-                                        </li>
-
-                                        <li >
-                                            <a href="header-dark.html">Header Dark</a>
-                                        </li>
-
-                                    </div>
-                                </ul>
-                            </li>
-
-
-
-
-                            <li  class="has-sub" >
-                                <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#sidebar-navs"
-                                   aria-expanded="false" aria-controls="sidebar-navs">
-                                    <span class="nav-text">layout Sidebars</span> <b class="caret"></b>
-                                </a>
-                                <ul  class="collapse"  id="sidebar-navs">
-                                    <div class="sub-menu">
-
-                                        <li >
-                                            <a href="sidebar-open.html">Sidebar Open</a>
-                                        </li>
-
-                                        <li >
-                                            <a href="sidebar-minimized.html">Sidebar Minimized</a>
-                                        </li>
-
-                                        <li >
-                                            <a href="sidebar-offcanvas.html">Sidebar Offcanvas</a>
-                                        </li>
-
-                                        <li >
-                                            <a href="sidebar-with-footer.html">Sidebar With Footer</a>
-                                        </li>
-
-                                        <li >
-                                            <a href="sidebar-without-footer.html">Sidebar Without Footer</a>
-                                        </li>
-
-                                        <li >
-                                            <a href="right-sidebar.html">Right Sidebar</a>
-                                        </li>
-
-                                    </div>
-                                </ul>
-                            </li>
-
-
-
-
-
-                            <li >
-                                <a class="sidenav-item-link" href="rtl.html">
-                                    <span class="nav-text">RTL Direction</span>
-
-                                </a>
-                            </li>
-
-
-
-
-                        </div>
-                    </ul>
-                </li>
-
-
-
-            </ul>
-
-        </div>
-
-<!--        <hr class="separator" />-->
-
-<!--        <div class="sidebar-footer">-->
-<!--            <div class="sidebar-footer-content">-->
-<!--                <h6 class="text-uppercase">-->
-<!--                    Cpu Uses <span class="float-right">40%</span>-->
-<!--                </h6>-->
-<!--                <div class="progress progress-xs">-->
-<!--                    <div-->
-<!--                        class="progress-bar active"-->
-<!--                        style="width: 40%;"-->
-<!--                        role="progressbar"-->
-<!--                    ></div>-->
-<!--                </div>-->
-<!--                <h6 class="text-uppercase">-->
-<!--                    Memory Uses <span class="float-right">65%</span>-->
-<!--                </h6>-->
-<!--                <div class="progress progress-xs">-->
-<!--                    <div-->
-<!--                        class="progress-bar progress-bar-warning"-->
-<!--                        style="width: 65%;"-->
-<!--                        role="progressbar"-->
-<!--                    ></div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
+<nav class="navbar navbar-default navbar-static-top m-b-0">
+    <div class="navbar-header"> <a class="navbar-toggle hidden-sm hidden-md hidden-lg " href="javascript:void(0)" data-toggle="collapse" data-target=".navbar-collapse"><i class="ti-menu"></i></a>
+        <div class="top-left-part"><a class="logo" href="index.html"><b><!--This is dark logo icon--><img src="<?=base_url?>/admin/assets/plugins/images/eliteadmin-logo.png" alt="home" class="dark-logo" /><!--This is light logo icon--><img src="<?=base_url?>/admin/assets/plugins/images/eliteadmin-logo-dark.png" alt="home" class="light-logo" /></b><span class="hidden-xs"><!--This is dark logo text--><img src="<?=base_url?>/admin/assets/plugins/images/eliteadmin-text.png" alt="home" class="dark-logo" /><!--This is light logo text--><img src="<?=base_url?>/admin/assets/plugins/images/eliteadmin-text-dark.png" alt="home" class="light-logo" /></span></a></div>
+        <ul class="nav navbar-top-links navbar-left hidden-xs">
+            <li><a href="javascript:void(0)" class="open-close hidden-xs waves-effect waves-light"><i class="icon-arrow-left-circle ti-menu"></i></a></li>
+            <li>
+                <form role="search" class="app-search hidden-xs">
+                    <input type="text" placeholder="Search..." class="form-control">
+                    <a href="#"><i class="fa fa-search"></i></a>
+                </form>
+            </li>
+        </ul>
+        <ul class="nav navbar-top-links navbar-right pull-right">
+            <li class="dropdown"> <a class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="#"><i class="icon-envelope"></i>
+                    <div class="notify"><span class="heartbit"></span><span class="point"></span></div>
+                </a>
+                <ul class="dropdown-menu mailbox animated bounceInDown">
+                    <li>
+                        <div class="drop-title">You have 4 new messages</div>
+                    </li>
+                    <li>
+                        <div class="message-center"> <a href="#">
+                                <div class="user-img"> <img src="<?=base_url?>/admin/assets/plugins/images/users/pawandeep.jpg" alt="user" class="img-circle"> <span class="profile-status online pull-right"></span> </div>
+                                <div class="mail-contnet">
+                                    <h5>Pavan kumar</h5>
+                                    <span class="mail-desc">Just see the my admin!</span> <span class="time">9:30 AM</span> </div>
+                            </a> <a href="#">
+                                <div class="user-img"> <img src="<?=base_url?>/admin/assets/plugins/images/users/sonu.jpg" alt="user" class="img-circle"> <span class="profile-status busy pull-right"></span> </div>
+                                <div class="mail-contnet">
+                                    <h5>Sonu Nigam</h5>
+                                    <span class="mail-desc">I've sung a song! See you at</span> <span class="time">9:10 AM</span> </div>
+                            </a> <a href="#">
+                                <div class="user-img"> <img src="<?=base_url?>/admin/assets/plugins/images/users/arijit.jpg" alt="user" class="img-circle"> <span class="profile-status away pull-right"></span> </div>
+                                <div class="mail-contnet">
+                                    <h5>Arijit Sinh</h5>
+                                    <span class="mail-desc">I am a singer!</span> <span class="time">9:08 AM</span> </div>
+                            </a> <a href="#">
+                                <div class="user-img"> <img src="<?=base_url?>/admin/assets/plugins/images/users/pawandeep.jpg" alt="user" class="img-circle"> <span class="profile-status offline pull-right"></span> </div>
+                                <div class="mail-contnet">
+                                    <h5>Pavan kumar</h5>
+                                    <span class="mail-desc">Just see the my admin!</span> <span class="time">9:02 AM</span> </div>
+                            </a> </div>
+                    </li>
+                    <li> <a class="text-center" href="javascript:void(0);"> <strong>See all notifications</strong> <i class="fa fa-angle-right"></i> </a></li>
+                </ul>
+                <!-- /.dropdown-messages -->
+            </li>
+            <!-- /.dropdown -->
+            <li class="dropdown"> <a class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="#"><i class="icon-note"></i>
+                    <div class="notify"><span class="heartbit"></span><span class="point"></span></div>
+                </a>
+                <ul class="dropdown-menu dropdown-tasks animated slideInUp">
+                    <li> <a href="#">
+                            <div>
+                                <p> <strong>Task 1</strong> <span class="pull-right text-muted">40% Complete</span> </p>
+                                <div class="progress progress-striped active">
+                                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%"> <span class="sr-only">40% Complete (success)</span> </div>
+                                </div>
+                            </div>
+                        </a> </li>
+                    <li class="divider"></li>
+                    <li> <a href="#">
+                            <div>
+                                <p> <strong>Task 2</strong> <span class="pull-right text-muted">20% Complete</span> </p>
+                                <div class="progress progress-striped active">
+                                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%"> <span class="sr-only">20% Complete</span> </div>
+                                </div>
+                            </div>
+                        </a> </li>
+                    <li class="divider"></li>
+                    <li> <a href="#">
+                            <div>
+                                <p> <strong>Task 3</strong> <span class="pull-right text-muted">60% Complete</span> </p>
+                                <div class="progress progress-striped active">
+                                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%"> <span class="sr-only">60% Complete (warning)</span> </div>
+                                </div>
+                            </div>
+                        </a> </li>
+                    <li class="divider"></li>
+                    <li> <a href="#">
+                            <div>
+                                <p> <strong>Task 4</strong> <span class="pull-right text-muted">80% Complete</span> </p>
+                                <div class="progress progress-striped active">
+                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%"> <span class="sr-only">80% Complete (danger)</span> </div>
+                                </div>
+                            </div>
+                        </a> </li>
+                    <li class="divider"></li>
+                    <li> <a class="text-center" href="#"> <strong>See All Tasks</strong> <i class="fa fa-angle-right"></i> </a> </li>
+                </ul>
+                <!-- /.dropdown-tasks -->
+            </li>
+            <!-- /.dropdown -->
+            <!-- .Megamenu -->
+            <li class="mega-dropdown">
+                <a class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="#"><span class="hidden-xs">Mega</span> <i class="icon-options-vertical"></i></a>
+                <ul class="dropdown-menu mega-dropdown-menu animated bounceInDown">
+                    <li class="col-sm-3">
+                        <ul>
+                            <li class="dropdown-header">Header Title</li>
+                            <li><a href="javascript:void(0)">Link of page</a> </li>
+                        </ul>
+                    </li>
+                    <li class="col-sm-3">
+                        <ul>
+                            <li class="dropdown-header">Header Title</li>
+                            <li><a href="javascript:void(0)">Link of page</a> </li>
+                        </ul>
+                    </li>
+                    <li class="col-sm-3">
+                        <ul>
+                            <li class="dropdown-header">Header Title</li>
+                            <li><a href="javascript:void(0)">Link of page</a> </li>
+                        </ul>
+                    </li>
+                    <li class="col-sm-3">
+                        <ul>
+                            <li class="dropdown-header">Header Title</li>
+                            <li> <a href="javascript:void(0)">Link of page</a> </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <!-- /.Megamenu -->
+
+            <li class="right-side-toggle"> <a class="waves-effect waves-light" href="javascript:void(0)"><i class="ti-settings"></i></a></li>
+            <!-- /.dropdown -->
+        </ul>
     </div>
-</aside>
+    <!-- /.navbar-header -->
+    <!-- /.navbar-top-links -->
+    <!-- /.navbar-static-side -->
+</nav>
+<!-- End Top Navigation -->
+
+<!-- Left navbar-header -->
+<div class="navbar-default sidebar" role="navigation">
+
+    <div class="sidebar-nav navbar-collapse slimscrollsidebar">
+        <div class="user-profile">
+            <div class="dropdown user-pro-body">
+                <div><img src="<?=base_url?>/admin/assets/plugins/images/users/varun.jpg" alt="user-img" class="img-circle"></div>
+                <a href="#" class="dropdown-toggle u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php if (isset($_SESSION['fullname'])) echo $_SESSION['fullname'];?><span class="caret"></span></a>
+                <ul class="dropdown-menu animated flipInY">
+                    <li><a href="#"><i class="ti-user"></i> My Profile</a></li>
+                    <li><a href="#"><i class="ti-wallet"></i> My Balance</a></li>
+                    <li><a href="#"><i class="ti-email"></i> Inbox</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#"><i class="ti-settings"></i> Account Setting</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="login.html"><i class="fa fa-power-off"></i> Logout</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <ul class="nav" id="side-menu">
+
+            <li class="sidebar-search hidden-sm hidden-md hidden-lg">
+                <!-- input-group -->
+                <div class="input-group custom-search-form">
+                    <input type="text" class="form-control" placeholder="Search...">
+                    <span class="input-group-btn">
+            <button class="btn btn-default" type="button"> <i class="fa fa-search"></i> </button>
+            </span> </div>
+                <!-- /input-group -->
+            </li>
+<!--            <li class="nav-small-cap m-t-10">--- Main Menu</li>-->
+            <li> <a href="<?php base_url?>/admin/index.php" class="waves-effect active"><i class="linea-icon linea-basic fa-fw" data-icon="v"></i> <span class="hide-menu"> Trang chủ </span></a></li>
+            <li class="nav-small-cap">--- Proffessional</li>
+            <li><a href="javascript:void(0);" class="waves-effect"><i class="icon-people fa-fw"></i> <span class="hide-menu">Quản lý user<span class="fa arrow"></span></span></a>
+                <ul class="nav nav-second-level">
+                    <li> <a href="<?=base_url?>/admin/module/user/add.php">Thêm admin</a></li>
+                    <li> <a href="<?=base_url?>/admin/module/user/list.php">Danh sách admin</a></li>
+                </ul>
+            </li>
+            <li><a href="javascript:void(0);" class="waves-effect"><i class="icon-docs fa-fw"></i> <span class="hide-menu">Reports<span class="fa arrow"></span></span></a>
+                <ul class="nav nav-second-level">
+                    <li> <a href="crm-customer-report.html">Customer Reports</a></li>
+                    <li> <a href="crm-sales-report.html">Sales Reports</a></li>
+                    <li> <a href="crm-leads-report.html">Leads Reports</a></li>
+                </ul>
+            </li>
+            <li><a href="javascript:void(0);" class="waves-effect"><i class="icon-people fa-fw"></i> <span class="hide-menu">Customers<span class="fa arrow"></span></span></a>
+                <ul class="nav nav-second-level">
+                    <li> <a href="crm-customers.html">All Customers</a></li>
+                    <li> <a href="crm-add-customers.html">Add Customers</a></li>
+                    <li> <a href="crm-edit-customers.html">Edit Customers</a></li>
+                </ul>
+            </li>
+
+            <li><a href="javascript:void(0);" class="waves-effect"><i class="icon-handbag fa-fw"></i> <span class="hide-menu">Vendors<span class="fa arrow"></span></span></a>
+                <ul class="nav nav-second-level">
+                    <li> <a href="crm-vendors.html">All Vendors</a></li>
+                    <li> <a href="crm-add-vendors.html">Add Vendors</a></li>
+                    <li> <a href="crm-edit-vendors.html">Edit Vendors</a></li>
+                </ul>
+            </li>
+            <li><a href="javascript:void(0);" class="waves-effect"><i class="ti-clipboard fa-fw"></i> <span class="hide-menu">Invoice<span class="fa arrow"></span></span></a>
+                <ul class="nav nav-second-level">
+                    <li> <a href="crm-invoice.html">All Invoice</a></li>
+                    <li> <a href="crm-add-invoice.html">Add Invoice</a></li>
+                    <li> <a href="crm-edit-invoice.html">Edit Invoice</a></li>
+                    <li> <a href="crm-view-invoice.html">View Invoice</a></li>
+                </ul>
+            </li>
+            <li> <a href="widgets.html" class="waves-effect"><i data-icon="P" class="linea-icon linea-basic fa-fw"></i> <span class="hide-menu">Widgets</span></a> </li>
+            <li> <a href="#" class="waves-effect"><i data-icon="7" class="linea-icon linea-basic fa-fw"></i> <span class="hide-menu">Icons<span class="fa arrow"></span></span></a>
+                <ul class="nav nav-second-level">
+                    <li> <a href="fontawesome.html">Font awesome</a> </li>
+                    <li> <a href="themifyicon.html">Themify Icons</a> </li>
+                    <li> <a href="simple-line.html">Simple line Icons</a> </li>
+                    <li><a href="linea-icon.html">Linea Icons</a></li>
+                    <li><a href="weather.html">Weather Icons</a></li>
+                </ul>
+            </li>
+            <li><a href="<?=base_url?>/admin/logout.php" class="waves-effect"><i class="icon-logout fa-fw"></i> <span class="hide-menu">Log out</span></a></li>
+        </ul>
+    </div>
+</div>

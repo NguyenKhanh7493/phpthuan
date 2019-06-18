@@ -1,185 +1,54 @@
-<?php
-    include_once ('config/define.php');
-?>
+
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
+
+<!-- Mirrored from eliteadmin.themedesigner.in/demos/eliteadmin-crm/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 20 Mar 2017 09:31:50 GMT -->
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <title>Nguyễn Khánh</title>
-
-    <!-- GOOGLE FONTS -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500|Poppins:400,500,600,700|Roboto:400,500" rel="stylesheet"/>
-    <link href="https://cdn.materialdesignicons.com/3.0.39/css/materialdesignicons.min.css" rel="stylesheet" />
-
-    <!-- PLUGINS CSS STYLE -->
-    <link href="assets/plugins/toaster/toastr.min.css" rel="stylesheet" />
-    <link href="assets/plugins/nprogress/nprogress.css" rel="stylesheet" />
-    <link href="assets/plugins/flag-icons/css/flag-icon.min.css" rel="stylesheet"/>
-    <link href="assets/plugins/jvectormap/jquery-jvectormap-2.0.3.css" rel="stylesheet" />
-    <link href="assets/plugins/ladda/ladda.min.css" rel="stylesheet" />
-    <link href="assets/plugins/select2/css/select2.min.css" rel="stylesheet" />
-    <link href="assets/plugins/daterangepicker/daterangepicker.css" rel="stylesheet" />
-    <link href="assets/js/myscripts.js" rel="stylesheet" />
-
-    <!-- SLEEK CSS -->
-    <link id="sleek-css" rel="stylesheet" href="assets/css/sleek.css" />
-
-
-
-    <!-- FAVICON -->
-    <link href="assets/img/favicon.png" rel="shortcut icon" />
-
-    <!--
-      HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries
-    -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" type="image/png" sizes="16x16" href="<?=base_url?>/admin/assets/plugins/images/favicon.png">
+    <title>Khánh quản trị</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="<?=base_url?>/admin/assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Menu CSS -->
+    <link href="<?=base_url?>/admin/assets/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css" rel="stylesheet">
+    <!-- morris CSS -->
+    <link href="<?=base_url?>/admin/assets/plugins/bower_components/morrisjs/morris.css" rel="stylesheet">
+    <!-- animation CSS -->
+    <link href="<?=base_url?>/admin/assets/css/animate.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="<?=base_url?>/admin/assets/css/style.css" rel="stylesheet">
+    <!-- color CSS -->
+    <link href="<?=base_url?>/admin/assets/css/colors/gray-dark.css" id="theme"  rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <script src="assets/plugins/nprogress/nprogress.js"></script>
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','../../../www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-19175540-9', 'auto');
+        ga('send', 'pageview');
+
+    </script>
 </head>
-
-
-<body class="sidebar-fixed sidebar-dark header-light header-fixed" id="body">
-<script>
-    NProgress.configure({ showSpinner: false });
-    NProgress.start();
-</script>
-
-<div class="mobile-sticky-body-overlay"></div>
-
-<div class="wrapper">
-
-    <!--
-====================================
-——— LEFT SIDEBAR WITH FOOTER
-=====================================
--->
+<body>
+<!-- Preloader -->
+<div class="preloader">
+    <div class="cssload-speeding-wheel"></div>
+</div>
+<div id="wrapper">
+    <!-- Top Navigation -->
     <?php include ('slidebar.php');?>
-
-
-
-    <div class="page-wrapper">
-        <!-- Header -->
-        <header class="main-header " id="header">
-            <nav class="navbar navbar-static-top navbar-expand-lg">
-                <!-- Sidebar toggle button -->
-                <button id="sidebar-toggler" class="sidebar-toggle">
-                    <span class="sr-only">Toggle navigation</span>
-                </button>
-                <!-- search form -->
-                <div class="search-form d-none d-lg-inline-block">
-                    <div class="input-group">
-                        <button type="button" name="search" id="search-btn" class="btn btn-flat">
-                            <i class="mdi mdi-magnify"></i>
-                        </button>
-                        <input type="text" name="query" id="search-input" class="form-control" placeholder="'button', 'chart' etc."
-                               autofocus autocomplete="off" />
-                    </div>
-                    <div id="search-results-container">
-                        <ul id="search-results"></ul>
-                    </div>
-                </div>
-
-                <div class="navbar-right ">
-                    <ul class="nav navbar-nav">
-                        <!-- Github Link Button -->
-                        <li class="github-link mr-3">
-                            <a class="btn btn-outline-secondary btn-sm" href="https://github.com/tafcoder/sleek-dashboard" target="_blank">
-                                <span class="d-none d-md-inline-block mr-2">Source Code</span>
-                                <i class="mdi mdi-github-circle"></i>
-                            </a>
-
-                        </li>
-                        <li class="dropdown notifications-menu">
-                            <button class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="mdi mdi-bell-outline"></i>
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-right">
-                                <li class="dropdown-header">You have 5 notifications</li>
-                                <li>
-                                    <a href="#">
-                                        <i class="mdi mdi-account-plus"></i> New user registered
-                                        <span class=" font-size-12 d-inline-block float-right"><i class="mdi mdi-clock-outline"></i> 10 AM</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="mdi mdi-account-remove"></i> User deleted
-                                        <span class=" font-size-12 d-inline-block float-right"><i class="mdi mdi-clock-outline"></i> 07 AM</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="mdi mdi-chart-areaspline"></i> Sales report is ready
-                                        <span class=" font-size-12 d-inline-block float-right"><i class="mdi mdi-clock-outline"></i> 12 PM</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="mdi mdi-account-supervisor"></i> New client
-                                        <span class=" font-size-12 d-inline-block float-right"><i class="mdi mdi-clock-outline"></i> 10 AM</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="mdi mdi-server-network-off"></i> Server overloaded
-                                        <span class=" font-size-12 d-inline-block float-right"><i class="mdi mdi-clock-outline"></i> 05 AM</span>
-                                    </a>
-                                </li>
-                                <li class="dropdown-footer">
-                                    <a class="text-center" href="#"> View All </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <!-- User Account -->
-                        <li class="dropdown user-menu">
-                            <button href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                                <img src="assets/img/user/user.png" class="user-image" alt="User Image" />
-                                <span class="d-none d-lg-inline-block"><?php if (isset($_SESSION['fullname'])) echo $_SESSION['fullname'];?></span>
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-right">
-                                <!-- User image -->
-                                <li class="dropdown-header">
-                                    <img src="assets/img/user/user.png" class="img-circle" alt="User Image" />
-                                    <div class="d-inline-block">
-                                        <?php if (isset($_SESSION['fullname'])) echo $_SESSION['fullname'];?> <small class="pt-1">abdus@gmail.com</small>
-                                    </div>
-                                </li>
-
-                                <li>
-                                    <a href="profile.html">
-                                        <i class="mdi mdi-account"></i> My Profile
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="email-inbox.html">
-                                        <i class="mdi mdi-email"></i> Message
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#"> <i class="mdi mdi-diamond-stone"></i> Projects </a>
-                                </li>
-                                <li>
-                                    <a href="#"> <i class="mdi mdi-settings"></i> Account Setting </a>
-                                </li>
-
-                                <li class="dropdown-footer">
-                                    <a href="<?php base_url?>/admin/logout.php"> <i class="mdi mdi-logout"></i> Log Out </a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-
-
-        </header>
-
-
-        <div class="content-wrapper">
-            <div class="content">
+    <!-- Left navbar-header end -->
+    <!-- Page Content -->
+    <div id="page-wrapper">
+        <div class="container-fluid">
