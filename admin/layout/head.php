@@ -1,3 +1,6 @@
+<?php
+    include_once ('config/define.php');
+?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
@@ -19,6 +22,7 @@
     <link href="assets/plugins/ladda/ladda.min.css" rel="stylesheet" />
     <link href="assets/plugins/select2/css/select2.min.css" rel="stylesheet" />
     <link href="assets/plugins/daterangepicker/daterangepicker.css" rel="stylesheet" />
+    <link href="assets/js/myscripts.js" rel="stylesheet" />
 
     <!-- SLEEK CSS -->
     <link id="sleek-css" rel="stylesheet" href="assets/css/sleek.css" />
@@ -136,14 +140,14 @@
                         <li class="dropdown user-menu">
                             <button href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                                 <img src="assets/img/user/user.png" class="user-image" alt="User Image" />
-                                <span class="d-none d-lg-inline-block">Abdus Salam</span>
+                                <span class="d-none d-lg-inline-block"><?php if (isset($_SESSION['fullname'])) echo $_SESSION['fullname'];?></span>
                             </button>
                             <ul class="dropdown-menu dropdown-menu-right">
                                 <!-- User image -->
                                 <li class="dropdown-header">
                                     <img src="assets/img/user/user.png" class="img-circle" alt="User Image" />
                                     <div class="d-inline-block">
-                                        Abdus Salam <small class="pt-1">abdus@gmail.com</small>
+                                        <?php if (isset($_SESSION['fullname'])) echo $_SESSION['fullname'];?> <small class="pt-1">abdus@gmail.com</small>
                                     </div>
                                 </li>
 
@@ -165,7 +169,7 @@
                                 </li>
 
                                 <li class="dropdown-footer">
-                                    <a href="signin.html"> <i class="mdi mdi-logout"></i> Log Out </a>
+                                    <a href="<?php base_url?>/admin/logout.php"> <i class="mdi mdi-logout"></i> Log Out </a>
                                 </li>
                             </ul>
                         </li>

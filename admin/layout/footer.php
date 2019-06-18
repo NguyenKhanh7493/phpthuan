@@ -8,12 +8,12 @@
 <footer class="footer mt-auto">
     <div class="copyright bg-white">
         <p>
-            &copy; <span id="copy-year">2019</span> Copyright Sleek Dashboard Bootstrap Template by
+            &copy; <span id="copy-year">2019</span> được phát triển bởi
             <a
                 class="text-primary"
-                href="http://www.iamabdus.com/"
+                href="https://www.facebook.com/nguyenkhanh.N2K"
                 target="_blank"
-            >Abdus</a
+            >Nguyễn Khánh</a
             >.
         </p>
     </div>
@@ -49,7 +49,9 @@
 <script src="assets/js/map.js"></script>
 <script src="assets/js/custom.js"></script>
 
-
+<script type="text/javascript">
+    $('div.my-alert').delay(5000).slideUp();
+</script>
 
 
 </body>

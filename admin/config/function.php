@@ -1,7 +1,13 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Administrator
- * Date: 6/16/2019
- * Time: 9:06 PM
- */
+ function dataRow($result){
+     if ($result){
+         $data = array();
+         while ($da = mysqli_fetch_assoc($result)){
+             $data = $da;
+         }
+         return $data;
+     }else{
+         return false;
+     }
+ }
+?>
