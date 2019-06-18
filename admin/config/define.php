@@ -1,5 +1,6 @@
 <?php
     define('base_url','tryup.site');
+//    define('path_root',__DIR__);
 //    // biểu thức chính quy
 //    $pattern = '/^[A-Za-z0-9_\.]{6,32}$/'; //sử dụng hàm preg_match($pattern,$subject) -> kiểm tra username
 //    $pattern_pass = '/^([A-Z]){1}([\w_\.!@#$%^&*()]+){5,31}$/'; //sử dụng hàm preg_match($pattern,$subject) -> kiểm tra pass

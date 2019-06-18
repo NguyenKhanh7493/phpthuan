@@ -1,10 +1,15 @@
 <?php
     session_start();
+    if (isset($_SESSION['fullname']) && isset($_SESSION['status']) == 1){
+        header('location:/admin/index.php');
+    }
     include ('config/define.php');
     include ('config/database.php');
+    include ('config/function.php');
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         $error = array();
+        $success = array();
         if (empty($_POST['email'])){
             $error['email'] = "(*) Bạn chưa nhập email";
         }else{
@@ -31,14 +36,14 @@
 //        $email = mysqli_real_escape_string($db,$email);
 //        $pass = mysqli_real_escape_string($db,$pass);
         if (empty($error)){
-            $sql = "SELECT * FROM users WHERE email = {$email} and password = {$password}";
+            $sql = "SELECT * FROM users WHERE email = '".$email."' and password = '".md5($password)."'";
             $result = mysqli_query($db,$sql);
-            $row = mysqli_num_rows($result);
-            if ($row > 0){
-                $_SESSION['email'] = $row['email'];
-                $_SESSION['fullname'] = $row['fullname'];
+            if (mysqli_num_rows($result) > 0){
+                $data = mysqli_fetch_assoc($result);
+                $_SESSION['fullname'] = $data['fullname'];
+                $_SESSION['status'] = $data['status'];
                 header('location:/admin/index.php');
-                echo '<p class="btn-success">Đăng nhập thành công</p>';
+                $_SESSION['success'] = "Đăng nhập thành công";
             }else{
                 $error['fail'] = "Đăng nhập thất bại";
             }
@@ -112,7 +117,12 @@
 
                     <h4 class="text-dark mb-5">ĐĂNG NHẬP</h4>
                     <?php if (isset($error['fail'])){?>
-                    <p style="color: red;font-size: 15px;"><?php echo $error['fail'] ;?></p>
+                        <div class="alert alert-dismissible fade show alert-danger" role="alert" style="height: 0px;">
+                            <p style="line-height: 0;color: #c02222;"><?php echo $error['fail']?></p>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="line-height: 0;">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
                     <?php }?>
                     <form action="" method="post">
                         <div class="row">
@@ -156,5 +166,7 @@
         </p>
     </div>
 </div>
+<script src="assets/plugins/jquery/jquery.min.js"></script>
+<script src="assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
