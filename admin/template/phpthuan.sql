@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th6 16, 2019 lúc 05:05 PM
+-- Thời gian đã tạo: Th6 19, 2019 lúc 05:24 PM
 -- Phiên bản máy phục vụ: 10.1.37-MariaDB
 -- Phiên bản PHP: 7.3.0
 
@@ -36,7 +36,7 @@ CREATE TABLE `users` (
   `avatar` varchar(100) NOT NULL,
   `phone` varchar(20) DEFAULT NULL,
   `status` tinyint(2) NOT NULL,
-  `group_id` int(11) NOT NULL,
+  `group_id` int(11) DEFAULT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -46,7 +46,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `fullname`, `email`, `password`, `avatar`, `phone`, `status`, `group_id`, `created_at`, `updated_at`) VALUES
-(1, 'Nguyễn Như Khánh', 'nguyenkhanh7493@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '1.jpg', '0964245027', 1, 1, '2019-06-16 00:00:00', '2019-06-16 00:00:00');
+(1, 'Nguyễn Như Khánh', 'nguyenkhanh7493@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '1.jpg', '0964245027', 1, 1, '2019-06-16 00:00:00', '2019-06-16 00:00:00'),
+(4, 'Nguyen Khanh', 'khanhlongqt7498@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'cauhienluong.jpg', '9642450274', 0, NULL, '2019-06-19 17:15:58', '0000-00-00 00:00:00');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -66,7 +67,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

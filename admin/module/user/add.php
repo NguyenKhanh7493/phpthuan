@@ -6,6 +6,9 @@
     $title = "Thêm quản trị";
     if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         $error = array();
+        $success = array();
+        $status = isset($_POST['status'])?$_POST['status']:0;
+        $created_at = date('Y/m/d H:i:s');
         if (empty($_POST['fullname'])){
             $error['fullname'] = "(*) Bạn chưa nhập tên";
         }else{
@@ -54,7 +57,36 @@
 //            $error['avatar'] = "(*) Bạn chưa chọn ảnh";
 //        }
         if (empty($error)){
-            echo 'thành công';
+            $name_avatar = $_FILES['avatar']['name'];
+            $name_type = $_FILES['avatar']['type'];
+            $name_size = $_FILES['avatar']['size'];
+            $name_tmp = $_FILES['avatar']['tmp_name'];
+            $path = '../../public/admin/image/';
+            if ($name_type == 'image/jpeg' || $name_type == 'image/jpg' || $name_type == 'image/png' || $name_type == 'image/gif'){
+                if ($name_size < 10485760){
+                    if (!file_exists($path.$name_avatar)){
+                        if (move_uploaded_file($name_tmp,$path.$name_avatar)){
+                            $sql = "INSERT INTO `users`(`fullname`,`email`,`password`,`avatar`,`phone`,`status`,`created_at`)
+                                    VALUES ('".$fullname."','".$email."','".md5($password)."','".$name_avatar."','".$phone."','".$status."','".$created_at."')";
+                            print_r($sql);
+                            $result = mysqli_query($db,$sql);
+                            if($result){
+                                $success['success'] = "Thêm thành công";
+                            }else{
+                                $error['fail'] = "Thêm thất bại";
+                            }
+                        }else{
+                            $error['avatar'] = "upload thất bại";
+                        }
+                    }else{
+                        $error['avatar'] = "Ảnh đã tồn tại";
+                    }
+                }else{
+                    $error['avatar'] = "Kích thước ảnh quá lớn";
+                }
+            }else{
+                $error['avatar'] = "Bạn nhập sai định dạng đuôi ảnh (jpeg,jpg,png,gif)";
+            }
         }
     }
 ?>
@@ -76,7 +108,26 @@
         <div class="col-md-8">
             <div class="white-box">
                 <h3 class="box-title m-b-0">Thêm mới admin</h3>
-                <p class="text-muted m-b-30 font-13"> </p>
+                <p class="text-muted m-b-30 font-13"></p>
+                <?php if (isset($success['success'])){?>
+                    <div class="my-alert">
+                        <div class="alert alert-success" style="height: 0;">
+                            <p style="color:#0d4e02;text-align: center;line-height: 0;">Thêm mới thành công</p>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="line-height: 0;">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    </div>
+                <?php }elseif (isset($error['fail'])){?>
+                    <div class="my-alert">
+                        <div class="alert alert-danger" style="height: 0;">
+                            <p style="color:#882406;text-align: center;line-height: 0;">Thêm mới thất bại</p>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="line-height: 0;">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    </div>
+                <?php }?>
                 <div class="row">
                     <div class="col-sm-12 col-xs-12">
                         <div class="form-group">
