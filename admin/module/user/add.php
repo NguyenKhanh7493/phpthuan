@@ -1,6 +1,62 @@
 <?php
+    session_start();
     include (__DIR__.'/../../config/define.php');
+    include (__DIR__.'/../../config/function.php');
+    include (__DIR__.'/../../config/database.php');
     $title = "Thêm quản trị";
+    if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+        $error = array();
+        if (empty($_POST['fullname'])){
+            $error['fullname'] = "(*) Bạn chưa nhập tên";
+        }else{
+            if (strlen($_POST['fullname']) < 5 ){
+                $error['fullname'] = '(*) Họ tên phải lớn hơn 5 ký tự';
+            }else{
+                $fullname = $_POST['fullname'];
+            }
+        }
+        if (empty($_POST['email'])){
+            $error['email'] = "(*) Bạn chưa nhập email";
+        }else{
+            $patten = '/^[A-Za-z0-9_.]{6,32}@([a-zA-Z0-9]{2,12})(.[a-zA-Z]{2,12})+$/';
+            if (!preg_match($patten,$_POST['email'])){
+                $error['email'] = "(*) Bạn nhập sai định dạng email";
+            }
+            $email = $_POST['email'];
+        }
+        if (empty($_POST['password'])){
+            $error['password'] = "(*) Bạn chưa nhập mật khẩu";
+        }else{
+            $patten = '/^([A-Za-z0-9])([\w_\.!@#$%^&*()]+){5,31}$/';
+            if (!preg_match($patten,$_POST['password'])){
+                $error['password'] = "(*) Mật khẩu phải hơn 6 ký tự và nhỏ hơn 31 ký tự";
+            }else{
+                $password = $_POST['password'];
+            }
+        }
+        if (empty($_POST['repassword'])){
+            $error['repassword'] = "(*) Bạn chưa nhập lại mật khẩu";
+        }
+        if ($_POST['password'] != $_POST['repassword']){
+            $error['repassword'] = "(*) Nhập lại mật khẩu không đúng";
+        }
+        if (empty($_POST['phone'])){
+            $error['phone'] = "(*) Bạn chưa nhập số điện thoại";
+        }else{
+            $patten = '/^[0-9]{10,11}$/';
+            if (!preg_match($patten,$_POST['phone'])){
+                $error['phone'] = "(*) Bạn nhập số điện thoại bị sai";
+            }else{
+                $phone = $_POST['phone'];
+            }
+        }
+//        if (empty($_POST['avatar'])){
+//            $error['avatar'] = "(*) Bạn chưa chọn ảnh";
+//        }
+        if (empty($error)){
+            echo 'thành công';
+        }
+    }
 ?>
 <?php include (__DIR__.'/../../layout/head.php');?>
 <div class="row bg-title">
@@ -16,69 +72,75 @@
     <!-- /.col-lg-12 -->
 </div>
 <div class="row">
-    <div class="col-md-8">
-        <div class="white-box">
-            <h3 class="box-title m-b-0">Thêm mới admin</h3>
-            <p class="text-muted m-b-30 font-13"> </p>
-            <div class="row">
-                <div class="col-sm-12 col-xs-12">
-                    <form>
+    <form action="" method="post" enctype="multipart/form-data">
+        <div class="col-md-8">
+            <div class="white-box">
+                <h3 class="box-title m-b-0">Thêm mới admin</h3>
+                <p class="text-muted m-b-30 font-13"> </p>
+                <div class="row">
+                    <div class="col-sm-12 col-xs-12">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Họ tên</label>
-                            <input type="text" class="form-control" name="fullname" placeholder="Xin mời nhập họ tên">
+                            <input type="text" class="form-control" name="fullname" placeholder="Xin mời nhập họ tên" value="<?php if (isset($_POST['fullname'])) echo $_POST['fullname'];?>">
+                            <?php if (isset($error['fullname'])){?>
+                                <span style="color: red;"><?php echo $error['fullname']?></span>
+                            <?php }?>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Email</label>
-                            <input type="email" class="form-control" name="email" placeholder="Xin mời nhập email">
+                            <input type="email" class="form-control" name="email" placeholder="Xin mời nhập email" value="<?php if (isset($_POST['email'])) echo $_POST['email'];?>">
+                            <?php if (isset($error['email'])){?>
+                                <span style="color: red;"><?php echo $error['email']?></span>
+                            <?php }?>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Mật khẩu</label>
                             <input type="password" class="form-control" name="password" placeholder="Xin mời nhập mật khẩu">
+                            <?php if (isset($error['password'])){?>
+                                <span style="color: red;"><?php echo $error['password']?></span>
+                            <?php }?>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Nhập lại mật khẩu</label>
                             <input type="password" class="form-control" name="repassword" placeholder="Nhập lại mật khẩu">
+                            <?php if (isset($error['repassword'])){?>
+                                <span style="color: red;"><?php echo $error['repassword']?></span>
+                            <?php }?>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="col-md-4">
-        <div class="white-box">
-<!--            <h3 class="box-title m-b-0">Sample Basic Forms</h3>-->
-<!--            <p class="text-muted m-b-30 font-13"> Bootstrap Elements </p>-->
-            <div class="row">
-                <div class="col-sm-12 col-xs-12">
-                    <form>
+        <div class="col-md-4">
+            <div class="white-box">
+                <div class="row">
+                    <div class="col-sm-12 col-xs-12">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Số điện thoại</label>
-                            <input type="text" class="form-control" name="phone" placeholder="Nhập số điện thoại">
+                            <input type="text" class="form-control" name="phone" placeholder="Nhập số điện thoại" value="<?php if (isset($_POST['phone'])) echo $_POST['phone'];?>">
+                            <?php if (isset($error['phone'])){?>
+                                <span style="color: red;"><?php echo $error['phone']?></span>
+                            <?php }?>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Email address</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                            <label for="exampleInputEmail1">Trạng thái</label>
+                            <input type="checkbox" id="status" value="1" name="status"  class="js-switch" data-color="#99d683"/>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputPassword1">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Confirm Password">
-                        </div>
-                        <div class="form-group">
-                            <div class="checkbox checkbox-success">
-                                <input id="checkbox1" type="checkbox">
-                                <label for="checkbox1"> Remember me </label>
+                            <div class="white-box">
+                                <h3 class="box-title">Ảnh đại diện </h3>
+                                <input type="file" id="input-file-disable-remove" name="avatar" class="dropify" data-show-remove="true" multiple value="" />
+                                <?php if (isset($error['avatar'])){?>
+                                    <span style="color: red;"><?php echo $error['avatar']?></span>
+                                <?php }?>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">Submit</button>
-                        <button type="submit" class="btn btn-inverse waves-effect waves-light">Cancel</button>
-                    </form>
+                        <button type="submit" class="btn btn-success waves-effect waves-light m-r-10" name="add_user">Thêm</button>
+                        <button type="submit" class="btn btn-inverse waves-effect waves-light">Hủy</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </form>
 </div>
 <?php include (__DIR__.'/../../layout/footer.php');?>

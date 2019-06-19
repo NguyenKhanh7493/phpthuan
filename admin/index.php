@@ -1,5 +1,8 @@
 <?php
     session_start();
+    if (!isset($_SESSION['fullname']) || $_SESSION['status'] != 1){
+        header('location:/admin/login.php');
+    }
     $title = 'Trang quản trị';
     include ('config/define.php');
 ?>
