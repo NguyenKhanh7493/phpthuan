@@ -1,102 +1,101 @@
 <?php
     session_start();
-    include (__DIR__.'/../../config/define.php');
-    include (__DIR__.'/../../config/function.php');
     include (__DIR__.'/../../config/database.php');
-    $sql = "SELECT email FROM users WHERE email = '".$_POST['email']."'";
-    $row = mysqli_query($db,$sql);
-    $list = mysqli_num_rows($row);
-    print_r($list);
-    $title = "Thêm quản trị";
-    if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-        $error = array();
-        $success = array();
-        $status = isset($_POST['status'])?$_POST['status']:0;
-        $created_at = date('Y/m/d H:i:s');
-        if (empty($_POST['fullname'])){
-            $error['fullname'] = "(*) Bạn chưa nhập tên";
-        }else{
-            if (strlen($_POST['fullname']) < 5 ){
-                $error['fullname'] = '(*) Họ tên phải lớn hơn 5 ký tự';
-            }else{
-                $fullname = $_POST['fullname'];
-            }
-        }
-        if (empty($_POST['email'])){
-            $error['email'] = "(*) Bạn chưa nhập email";
-        }elseif ($list > 0){
-            $error['email'] = "Email bạn nhập bị trùng";
-        }else{
-            $patten = '/^[A-Za-z0-9_.]{6,32}@([a-zA-Z0-9]{2,12})(.[a-zA-Z]{2,12})+$/';
-            if (!preg_match($patten,$_POST['email'])){
-                $error['email'] = "(*) Bạn nhập sai định dạng email";
-            }
-            $email = $_POST['email'];
-        }
-        if (empty($_POST['password'])){
-            $error['password'] = "(*) Bạn chưa nhập mật khẩu";
-        }else{
-            $patten = '/^([A-Za-z0-9])([\w_\.!@#$%^&*()]+){5,31}$/';
-            if (!preg_match($patten,$_POST['password'])){
-                $error['password'] = "(*) Mật khẩu phải hơn 6 ký tự và nhỏ hơn 31 ký tự";
-            }else{
-                $password = $_POST['password'];
-            }
-        }
-        if (empty($_POST['repassword'])){
-            $error['repassword'] = "(*) Bạn chưa nhập lại mật khẩu";
-        }
-        if ($_POST['password'] != $_POST['repassword']){
-            $error['repassword'] = "(*) Nhập lại mật khẩu không đúng";
-        }
-        if (empty($_POST['phone'])){
-            $error['phone'] = "(*) Bạn chưa nhập số điện thoại";
-        }else{
-            $patten = '/^[0-9]{10,11}$/';
-            if (!preg_match($patten,$_POST['phone'])){
-                $error['phone'] = "(*) Bạn nhập số điện thoại bị sai";
-            }else{
-                $phone = $_POST['phone'];
-            }
-        }
-        print_r($_FILES['avatar']);
-        if ($_FILES['avatar']['error'] != null){
-            $error['avatar'] = "(*) Bạn chưa chọn ảnh";
-        }
-        if (empty($error)){
-            $name_avatar = $_FILES['avatar']['name'];
-            $name_type = $_FILES['avatar']['type'];
-            $name_size = $_FILES['avatar']['size'];
-            $name_tmp = $_FILES['avatar']['tmp_name'];
-            $path = '../../public/admin/image/';
-            if ($name_type == 'image/jpeg' || $name_type == 'image/jpg' || $name_type == 'image/png' || $name_type == 'image/gif'){
-                if ($name_size < 10485760){
-                    if (!file_exists($path.$name_avatar)){
-                        if (move_uploaded_file($name_tmp,$path.$name_avatar)){
-                            $sql = "INSERT INTO `users`(`fullname`,`email`,`password`,`avatar`,`phone`,`status`,`created_at`)
-                                    VALUES ('".$fullname."','".$email."','".md5($password)."','".$name_avatar."','".$phone."','".$status."','".$created_at."')";
-                            print_r($sql);
-                            $result = mysqli_query($db,$sql);
-                            if($result){
-                                $success['success'] = "Thêm thành công";
-                            }else{
-                                $error['fail'] = "Thêm thất bại";
-                            }
-                        }else{
-                            $error['avatar'] = "upload thất bại";
-                        }
-                    }else{
-                        $error['avatar'] = "Ảnh đã tồn tại";
-                    }
-                }else{
-                    $error['avatar'] = "Kích thước ảnh quá lớn";
-                }
-            }else{
-                $error['avatar'] = "Bạn nhập sai định dạng đuôi ảnh (jpeg,jpg,png,gif)";
-            }
+    include (__DIR__.'/../../config/define.php');
+    $title = "Sửa thành viên";
+    $id = (int)$_GET['id'];
+    $sql = "SELECT * FROM users WHERE id=".$id;
+    $result = mysqli_query($db,$sql);
+    $data = mysqli_fetch_assoc($result);
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $error = array();
+    $success = array();
+    $status = isset($_POST['status']) ? $_POST['status'] : 0;
+    $update_at = date('Y/m/d H:i:s');
+    if (empty($_POST['fullname'])) {
+        $error['fullname'] = "(*) Bạn chưa nhập tên";
+    } else {
+        if (strlen($_POST['fullname']) < 5) {
+            $error['fullname'] = '(*) Họ tên phải lớn hơn 5 ký tự';
+        } else {
+            $fullname = $_POST['fullname'];
         }
     }
+    if (empty($_POST['email'])) {
+        $error['email'] = "(*) Bạn chưa nhập email";
+    } else {
+        $patten = '/^[A-Za-z0-9_.]{6,32}@([a-zA-Z0-9]{2,12})(.[a-zA-Z]{2,12})+$/';
+        if (!preg_match($patten, $_POST['email'])) {
+            $error['email'] = "(*) Bạn nhập sai định dạng email";
+        }
+        $email = $_POST['email'];
+    }
+    if (empty($_POST['password'])) {
+        $error['password'] = "(*) Bạn chưa nhập mật khẩu";
+    } else {
+        $patten = '/^([A-Za-z0-9])([\w_\.!@#$%^&*()]+){5,31}$/';
+        if (!preg_match($patten, $_POST['password'])) {
+            $error['password'] = "(*) Mật khẩu phải hơn 6 ký tự và nhỏ hơn 31 ký tự";
+        } else {
+            $password = $_POST['password'];
+        }
+    }
+    if (empty($_POST['repassword'])) {
+        $error['repassword'] = "(*) Bạn chưa nhập lại mật khẩu";
+    }
+    if ($_POST['password'] != $_POST['repassword']) {
+        $error['repassword'] = "(*) Nhập lại mật khẩu không đúng";
+    }
+    if (empty($_POST['phone'])) {
+        $error['phone'] = "(*) Bạn chưa nhập số điện thoại";
+    } else {
+        $patten = '/^[0-9]{10,11}$/';
+        if (!preg_match($patten, $_POST['phone'])) {
+            $error['phone'] = "(*) Bạn nhập số điện thoại bị sai";
+        } else {
+            $phone = $_POST['phone'];
+        }
+    }
+    print_r($_FILES['avatar']);
+    if ($_FILES['avatar']['error'] != null) {
+        $error['avatar'] = "(*) Bạn chưa chọn ảnh";
+    }
+    if (empty($error)){
+        $name_avatar = $_FILES['avatar']['name'];
+        $name_type = $_FILES['avatar']['type'];
+        $name_size = $_FILES['avatar']['size'];
+        $name_tmp = $_FILES['avatar']['tmp_name'];
+        $path = '../../public/admin/image/';
+        if ($name_type == 'image/jpeg' || $name_type == 'image/jpg' || $name_type == 'image/png' || $name_type == 'image/gif'){
+            if ($name_size < 10485760){
+                if (!file_exists($path.$name_avatar)){
+                    if (move_uploaded_file($name_tmp,$path.$name_avatar)){
+                        $sql = "INSERT INTO `users`(`fullname`,`email`,`password`,`avatar`,`phone`,`status`,`created_at`)
+                                    VALUES ('".$fullname."','".$email."','".md5($password)."','".$name_avatar."','".$phone."','".$status."','".$created_at."')";
+                        print_r($sql);
+                        $result = mysqli_query($db,$sql);
+                        if($result){
+                            $success['success'] = "Thêm thành công";
+                        }else{
+                            $error['fail'] = "Thêm thất bại";
+                        }
+                    }else{
+                        $error['avatar'] = "upload thất bại";
+                    }
+                }else{
+                    $error['avatar'] = "Ảnh đã tồn tại";
+                }
+            }else{
+                $error['avatar'] = "Kích thước ảnh quá lớn";
+            }
+        }else{
+            $error['avatar'] = "Bạn nhập sai định dạng đuôi ảnh (jpeg,jpg,png,gif)";
+        }
+    }
+}
 ?>
+
 <?php include (__DIR__.'/../../layout/head.php');?>
 <div class="row bg-title">
     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
@@ -114,7 +113,7 @@
     <form action="" method="post" enctype="multipart/form-data">
         <div class="col-md-8">
             <div class="white-box">
-                <h3 class="box-title m-b-0">Thêm mới admin</h3>
+                <h3 class="box-title m-b-0">Sửa thành viên</h3>
                 <p class="text-muted m-b-30 font-13"></p>
                 <?php if (isset($success['success'])){?>
                     <div class="my-alert">
@@ -139,14 +138,14 @@
                     <div class="col-sm-12 col-xs-12">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Họ tên</label>
-                            <input type="text" class="form-control" name="fullname" placeholder="Xin mời nhập họ tên" value="<?php if (isset($_POST['fullname'])) echo $_POST['fullname'];?>">
+                            <input type="text" class="form-control" name="fullname" placeholder="Xin mời nhập họ tên" value="<?php if (isset($data['fullname']) && $data['fullname'] != '') echo $data['fullname'];?>">
                             <?php if (isset($error['fullname'])){?>
                                 <span style="color: red;"><?php echo $error['fullname']?></span>
                             <?php }?>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Email</label>
-                            <input type="email" class="form-control" name="email" placeholder="Xin mời nhập email" value="<?php if (isset($_POST['email'])) echo $_POST['email'];?>">
+                            <input type="email" class="form-control" name="email" placeholder="Xin mời nhập email" value="<?php if (isset($data['email']) && $data['email'] != '') echo $data['email'];?>">
                             <?php if (isset($error['email'])){?>
                                 <span style="color: red;"><?php echo $error['email']?></span>
                             <?php }?>
@@ -175,14 +174,14 @@
                     <div class="col-sm-12 col-xs-12">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Số điện thoại</label>
-                            <input type="text" class="form-control" name="phone" placeholder="Nhập số điện thoại" value="<?php if (isset($_POST['phone'])) echo $_POST['phone'];?>">
+                            <input type="text" class="form-control" name="phone" placeholder="Nhập số điện thoại" value="<?php if (isset($data['phone']) && $data['phone'] != '') echo $data['phone'];?>">
                             <?php if (isset($error['phone'])){?>
                                 <span style="color: red;"><?php echo $error['phone']?></span>
                             <?php }?>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Trạng thái</label>
-                            <input type="checkbox" id="status" value="1" name="status"  class="js-switch" data-color="#99d683"/>
+                            <input type="checkbox" id="status" value="1" <?php if (isset($data['status']) && $data['status'] == 1) echo "checked";?> name="status"  class="js-switch" data-color="#99d683"/>
                         </div>
                         <div class="form-group">
                             <div class="white-box">
@@ -193,6 +192,13 @@
                                 <?php }?>
                             </div>
                         </div>
+                        <?php if (isset($data['avatar']) && $data['avatar'] != ''){?>
+                            <div id="showImg" style="text-align: center">
+                                <div class="form-group" name="parentImg">
+                                    <img src="<?=base_url?>/admin/public/admin/image/<?php echo $data['avatar'];?>" alt="" width="150">
+                                </div>
+                            </div>
+                        <?php }?>
                         <button type="submit" class="btn btn-success waves-effect waves-light m-r-10" name="add_user">Thêm</button>
                         <button type="submit" class="btn btn-inverse waves-effect waves-light">Hủy</button>
                     </div>
