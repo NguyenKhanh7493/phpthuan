@@ -49,7 +49,7 @@
                     </thead>
                     <tbody>
                     <?php while ($item = mysqli_fetch_assoc($result)){?>
-                        <tr>
+                        <tr id="<?=$item['id']?>">
                             <td><?php echo $item['id']?></td>
                             <td><?php echo $item['fullname']?></td>
                             <td><?php echo $item['email']?></td>
@@ -59,7 +59,7 @@
                             </td>
                             <td>
                                 <a href="<?=base_url?>/admin/module/user/edit.php?id=<?php echo $item['id']?>" id="editItem"><i class="ti-pencil text-success"></i></a> |
-                                <a href="" class="proDelItem" data-msg="Bạn muốn xóa?"><i class="ti-trash text-danger"></i></a>
+                                <a href="javascript:void(0)" class="proDelItem" data-id="<?=$item['id']?>"><i class="ti-trash text-danger"></i></a>
                             </td>
                         </tr>
                     <?php }?>
