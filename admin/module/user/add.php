@@ -3,10 +3,11 @@
     include (__DIR__.'/../../config/define.php');
     include (__DIR__.'/../../config/function.php');
     include (__DIR__.'/../../config/database.php');
-    $sql = "SELECT email FROM users WHERE email = '".$_POST['email']."'";
-    $row = mysqli_query($db,$sql);
-    $list = mysqli_num_rows($row);
-    print_r($list);
+    if (isset($_POST['email'])){
+        $sql = "SELECT email FROM users WHERE email = '".$_POST['email']."'";
+        $row = mysqli_query($db,$sql);
+        $list = mysqli_num_rows($row);
+    }
     $title = "Thêm quản trị";
     if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         $error = array();
@@ -59,7 +60,6 @@
                 $phone = $_POST['phone'];
             }
         }
-        print_r($_FILES['avatar']);
         if ($_FILES['avatar']['error'] != null){
             $error['avatar'] = "(*) Bạn chưa chọn ảnh";
         }
@@ -78,7 +78,8 @@
                             print_r($sql);
                             $result = mysqli_query($db,$sql);
                             if($result){
-                                $success['success'] = "Thêm thành công";
+                                header('location:/admin/module/user/list.php');
+                                $_SESSION['add_user'] = "Thêm thành công";
                             }else{
                                 $error['fail'] = "Thêm thất bại";
                             }
