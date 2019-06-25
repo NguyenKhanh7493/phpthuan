@@ -59,7 +59,7 @@
                             </td>
                             <td>
                                 <a href="<?=base_url?>/admin/module/user/edit.php?id=<?php echo $item['id']?>" id="editItem"><i class="ti-pencil text-success"></i></a> |
-                                <a href="javascript:void(0)" class="proDelItem" data-id="<?=$item['id']?>"><i class="ti-trash text-danger"></i></a>
+                                <a href="javascript:void(0)" class="proDelItem" data-id="<?=$item['id']?>" data-name="<?=$item['avatar']?>"><i class="ti-trash text-danger"></i></a>
                             </td>
                         </tr>
                     <?php }?>
