@@ -28,10 +28,6 @@
 <script src="<?=base_url?>/admin/assets/plugins/bower_components/icheck/icheck.min.js"></script>
 <script src="<?=base_url?>/admin/assets/plugins/bower_components/icheck/icheck.init.js"></script>
 <script src="<?=base_url?>/admin/assets/plugins/bower_components/styleswitcher/jQuery.style.switcher.js"></script>
-<script src="<?=base_url?>/admin/assets/plugins/plugin-soanthao/ckeditor/ckeditor.js"></script>
-<script src="<?=base_url?>/admin/assets/plugins/plugin-soanthao/ckfinder/ckfinder.js"></script>
-<script src="<?=base_url?>/admin/assets/plugins/plugin-soanthao/func_ckfinder.js"></script>
-
 <script>
     var elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
     $('.js-switch').each(function() {
