@@ -87,7 +87,7 @@
     <nav aria-label="...">
         <ul class="pagination">
             <?php if ($current_page > 1 && $total_page > 1){
-                echo '<li class="page-item disabled"><a href="/admin/module/user/list.php?page='.($current_page - 1).'" class="page-link" >Lùi</a></li>';
+                echo '<li class="page-item"><a href="/admin/module/user/list.php?page='.($current_page - 1).'" class="page-link" >Lùi</a></li>';
             }?>
             <?php
             for ($i=1;$i<=$total_page;$i++){
@@ -104,22 +104,46 @@
         </ul>
     </nav>
 <!--end-->
+<?php
+    $pagination = [$current_page]; // Đây là mảng lưu các trang sẽ xuất hiện ở phần phân trang
+    while (count($pagination) < 5 ){ // Sẽ chạy vòng lặp cho đến khi nào mảng này có đủ 5 phần tử thì thôi
+        $left = $pagination[0] - 1; // Phần tử tiếp theo ở bên trái sẽ là phần tử bên trái ở thời điểm hiện tại trừ đi 1
+        $right = $pagination[count($pagination) - 1] + 1; // Phần tử tiếp theo ở bên phải sẽ là phần tử bên phải ở thời điểm hiện tại cộng với 1
+        $added = false; //Biến kiểm tra xem có trang mới được thêm vào không
+        if ($left > 0){
+            array_unshift($pagination,$left); //đẩy page mới vào đầu mảng
+            $added = true;
+        }
+        if ($right <= $total_page){
+            array_push($pagination,$right); // đẩy page mới vào cuối mảng
+            $added = true;
+        }
+        if (!$added){ // Nếu cả bên trái lẫn bên phải đều không thể thêm phần tử nào vào nữa, thì break khỏi vòng lặp
+            break;
+        }
+    }
+    // Sau vòng lặp này bạn sẽ có một mảng có tối đa là 5 trang
+//    if ($pagination[0] != $current_page){ // Nếu trang ngoài cùng bên trái, mà không phải là current page, thì sẽ có nút Previous
+//        array_unshift($pagination,'lùi');
+//    }
+//    if ($pagination[count($pagination) - 1] != $current_page){ // Nếu trang ngoài cùng bên phải, mà không phải là current page, thì sẽ có nút Next
+//        array_push($pagination,'tới');
+//    }
+    echo "<pre>";
+    print_r($pagination);
+    echo "</pre>";
+?>
+<?php foreach ($pagination as $val){?>
     <nav aria-label="...">
         <ul class="pagination">
-            <li class="page-item disabled">
-                <span class="page-link">Previous</span>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item active">
-      <span class="page-link">
-        2
-        <span class="sr-only">(current)</span>
-      </span>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-                <a class="page-link" href="#">Next</a>
-            </li>
+            <?php if ($current_page > 1 && $total_page > 1){
+                echo '<li class="page-item"><a href="/admin/module/user/list.php?page='.($current_page - 1).'" class="page-link" >Lùi</a></li>';
+            }?>
+            <li class="page-item"><a class="page-link" href="/admin/module/user/list.php?page=<?=$val?>"><?=$val?></a></li>
+            <?php if ($current_page < $total_page && $total_page > 1){
+                echo '<li class="page-item"><a class="page-link" href="/admin/module/user/list.php?page='.($current_page + 1).'">Tới</a></li>';
+            }?>
         </ul>
     </nav>
+    <?php }?>
 <?php include (__DIR__.'/../../layout/footer.php');?>
